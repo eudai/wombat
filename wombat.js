@@ -1,4 +1,3 @@
-
 var wombox = document.querySelector('.wombox');
 if (wombox){
   wombox.remove();
@@ -11,17 +10,15 @@ function getWombox(type){
   var wombox = document.createElement('input');
   wombox.className = 'wombox';
   wombox.placeholder = 'waiting for your command...';
-  wombox.addEventListener('keypress',womboxHandler);
   wombox.style.zIndex = '10000';
   wombox.style.position = 'fixed';
-  wombox.style.width = '98%';
-  wombox.style.margin = '5px';
-  wombox.style.padding = '5px';
-  wombox.style.borderRadius = '7px';
-  wombox.style.boxShadow = '1px 1px 5px';
-  wombox.style.textAlign = 'center';
+  wombox.style.width = '33%';
+  wombox.style.margin = '3px';
+  wombox.style.padding = '8px';
+  wombox.style.borderRadius = '5px';
   wombox.bottom = '1em';
   wombox.right = '1em';
+  wombox.addEventListener('keypress',womboxHandler);
   return wombox;
 }
 
@@ -31,10 +28,29 @@ function womboxHandler(event){
     var command = wombox.value;
     wombox.placeholder = 'evaluating...';
     wombox.value = '';
+    if (getCommand(command)){
+      command = getCommand(command);
+    }
     try {
       wombox.placeholder = eval(command);
     } catch(error){
       wombox.placeholder = error.message;
     }
   }
+}
+
+function learn(){
+  alert('learning!')
+
+}
+
+function help(){
+  return 'I am here to help.'
+}
+
+function getCommand(string){
+  if (string.toLowerCase = 'what can i do?'){
+    return 'help()'
+  }
+  return false
 }
