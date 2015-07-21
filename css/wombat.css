@@ -1,0 +1,23 @@
+  
+wombox input {
+	font-family: Calibri;
+	font-size: 14px;
+	width: 300px;
+	margin: 0 auto;
+	padding: 5px;
+	border-radius: 5px;
+	box-shadow: 0 0 1px inset;
+}
+
+wombox textarea {
+	font-family: Calibri;
+	font-size: 14px;
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+	margin-top: 5px;
+	padding: 5px;
+	border-radius: 5px;
+	box-shadow: 0 0 1px inset;
+	resize: vertical;
+}
