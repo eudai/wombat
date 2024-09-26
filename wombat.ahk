@@ -14,6 +14,17 @@ IniRead, Index, %Config%, Windows, Index, 0
 send hello.
 return
 
+^!LButton::
+KeyWait LButton
+state := GetKeyState("LButton")
+if state
+{
+	Click Up
+} else {
+	Click Down
+}
+return
+
 ^!Up::
 NudgeUp:
 MouseMove 0, -1, 0, R
