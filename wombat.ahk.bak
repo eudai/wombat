@@ -10,12 +10,28 @@ Config=C:\code\wombat\wombat.ini
 
 IniRead, Index, %Config%, Windows, Index, 0
 
-::/hi::
-send hello.
+#Escape::
+EscapeWasPressed := 1
 return
 
-^!MButton::
-KeyWait MButton
+^!LButton::
+MouseGetPos, X1, Y1,
+WinGetActiveTitle TargetWindow
+InputBox Interval, Wombat, Set Interval.
+Loop {
+	Sleep %Interval%
+	MouseGetPos X2, Y2
+	WinGetActiveTitle ActiveWindow
+	WinActivate %TargetWindow%
+	Click %X1%, %Y1%
+	WinActivate %ActiveWindow%
+	MouseMove %X2%, %Y2%
+} Until EscapeWasPressed
+EscapeWasPressed := 0
+return
+
+^!Enter::
+ClickHold:
 state := GetKeyState("LButton")
 if state
 {
@@ -184,7 +200,7 @@ WinShow %Title%
 WinActivate %Title%
 return
 
-Numpad1 Up::
+^Numpad1 Up::
 Clipboard1 := clipboard
 return
 
