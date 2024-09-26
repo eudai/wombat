@@ -14,8 +14,8 @@ IniRead, Index, %Config%, Windows, Index, 0
 send hello.
 return
 
-^!LButton::
-KeyWait LButton
+^!MButton::
+KeyWait MButton
 state := GetKeyState("LButton")
 if state
 {
@@ -27,7 +27,7 @@ return
 
 ^!Up::
 NudgeUp:
-MouseClickDrag, Left, 0, -1, 0, R
+MouseMove 0, -1, 0, R
 return
 
 ^!Down::

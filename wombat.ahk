@@ -14,8 +14,7 @@ IniRead, Index, %Config%, Windows, Index, 0
 send hello.
 return
 
-^!LButton::
-KeyWait LButton
+^!Enter::
 state := GetKeyState("LButton")
 if state
 {
