@@ -14,6 +14,26 @@ IniRead, Index, %Config%, Windows, Index, 0
 send hello.
 return
 
+^!Up::
+NudgeUp:
+MouseMove 0, -1, 0, R
+return
+
+^!Down::
+NudgeDown:
+MouseMove 0, 1, 0, R
+return
+
+^!Left::
+NudgeLeft:
+MouseMove -1, 0, 0, R
+return
+
+^!Right::
+NudgeRight:
+MouseMove 1, 0, 0, R
+return
+
 ^!r::
 reload:
 ::/reload::
