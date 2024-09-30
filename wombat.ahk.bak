@@ -14,6 +14,31 @@ IniRead, Index, %Config%, Windows, Index, 0
 EscapeWasPressed := 1
 return
 
+^!F11::
+WinMax:
+ WinMaximize
+return
+
+^!G::
+WinSavePosition:
+WinGetActiveStats Title, W, H, X, Y
+IniWrite %X%, %Config%, WindowPosition, X
+IniWrite %Y%, %Config%, WindowPosition, Y
+IniWrite %W%, %Config%, WindowPosition, W
+IniWrite %H%, %Config%, WindowPosition, H
+IniWrite %Title%, %Config%, WindowPosition, Title
+return
+
+^!M::
+WinMovePosition:
+IniRead X, %Config%, WindowPosition, X
+IniRead Y, %Config%, WindowPosition, Y
+IniRead W, %Config%, WindowPosition, W
+IniRead H, %Config%, WindowPosition, H
+IniRead, Title, %Config%, WindowPosition, Title
+WinMove, %Title%,, %X%, %Y%, %W%, %H%
+return
+
 ^!LButton::
 MouseGetPos, X1, Y1,
 WinGetActiveTitle TargetWindow
