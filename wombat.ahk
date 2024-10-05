@@ -39,7 +39,7 @@ IniRead, Title, %Config%, WindowPosition, Title
 WinMove, %Title%,, %X%, %Y%, %W%, %H%
 return
 
-^!LButton::
+#^!LButton::
 MouseGetPos, X1, Y1,
 WinGetActiveTitle TargetWindow
 InputBox Interval, Wombat, Set Interval.
