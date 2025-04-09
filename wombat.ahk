@@ -5,14 +5,25 @@ SetTitleMatchMode 2
 Menu, Tray, Add, Unhide, UnhideWindow
 Menu, Tray, Icon, C:\code\wombat\wombat.ico
 
-
 Config=C:\code\wombat\wombat.ini
 
 IniRead, Index, %Config%, Windows, Index, 0
 
+GoTo Greeting
+
 #Escape::
 EscapeWasPressed := 1
 return
+
+Greeting:
+ToolTip Hello.
+SetTimer, RemoveToolTip, 1000
+return
+
+RemoveToolTip:
+ToolTip
+return
+
 
 ^!F11::
 WinMax:
@@ -95,18 +106,25 @@ return
 #h::
 HideWindow:
 WinGetActiveTitle ActiveWindowTitle
+WinGet ActiveWindowId, ID, A
 Index ++
 IniWrite %Index%, %Config%, HiddenWindows, Index
-IniWrite %ActiveWindowTitle%, %Config%, HiddenWindows, %Index%
-WinHide %ActiveWindowTitle%
+IniWrite %ActiveWindowId%, %Config%, HiddenWindows, %Index%
+WinHide ahk_id %ActiveWindowId%
+return
+
+^!h::
+WinActivate
+WinGet ActiveWindowId, ID, A
+MsgBox % ActiveWindowId
 return
 
 #u::
 UnhideWindow:
 if (Index > 0)
 {
-	IniRead Title, %Config%, HiddenWindows, %Index%
-	WinShow %Title%
+	IniRead WindowId, %Config%, HiddenWindows, %Index%
+	WinShow ahk_id %WindowId%
 	WinActivate %Title%
 	IniDelete %Config%, HiddenWindows, %Index%
 	Index --
@@ -304,3 +322,5 @@ return
 !Numpad0 Up::
 clipboard := Clipboard0
 return
+
+
