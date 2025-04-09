@@ -2,10 +2,12 @@
 DetectHiddenWindows On
 SetTitleMatchMode 2
 
-Menu, Tray, Add, Unhide, UnhideWindow
-Menu, Tray, Icon, C:\code\wombat\wombat.ico
+SetWorkingDir %A_ScriptDir%
 
-Config=C:\code\wombat\wombat.ini
+Menu, Tray, Add, Unhide, UnhideWindow
+Menu, Tray, Icon, %A_ScriptDir%\wombat.ico
+
+Config = %A_ScriptDir%\wombat.ini
 
 IniRead, Index, %Config%, Windows, Index, 0
 
@@ -16,7 +18,6 @@ Hotkey, #h, HideWindow, On
 Hotkey, #u, UnHideWindow, On
 
 Hotkey, ^!t, MountWindow, Off
-Hotkey, #F11, MaximizeWindow, On
 
 Hotkey, ^!WheelDown, WinFade, On
 Hotkey, ^!WheelUp, WinUnFade, On
@@ -110,22 +111,9 @@ RemoveToolTip:
 ToolTip
 return
 
-MaximizeWindow:
-WinGet CurrentStyle, Style, A
-MsgBox % CurrentStyle
-if CurrentStyle  {
-	WinSet, Style, -0xC00000, A
-	Maximized = true
-} else {
-	WinSet, Style, +0xC00000, A
-	Maximized = false
-}
-return
-
 MountWindow:
 WinSet, AlwaysOnTop, Toggle, A
 return
-
 
 WinFade:
 WinGet, Transparency, Transparent, A

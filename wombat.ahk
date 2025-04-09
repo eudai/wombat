@@ -2,10 +2,12 @@
 DetectHiddenWindows On
 SetTitleMatchMode 2
 
-Menu, Tray, Add, Unhide, UnhideWindow
-Menu, Tray, Icon, C:\code\wombat\wombat.ico
+SetWorkingDir %A_ScriptDir%
 
-Config=C:\code\wombat\wombat.ini
+Config = %A_ScriptDir%\wombat.ini
+
+Menu, Tray, Icon, %A_ScriptDir%\wombat.ico
+
 
 IniRead, Index, %Config%, Windows, Index, 0
 
