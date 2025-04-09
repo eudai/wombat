@@ -24,6 +24,29 @@ RemoveToolTip:
 ToolTip
 return
 
+^!WheelDown::
+WinFade:
+WinGet, Transparency, Transparent, A
+if Transparency is not integer
+	Transparency = 255
+NewTransparency := Transparency - 1
+if NewTransparency < 50
+	return
+WinSet, Transparent, %NewTransparency%, A
+return
+
+
+^!WheelUp::
+WinUnFade:
+WinGet, Transparency, Transparent, A
+if Transparency is not integer
+	Transparency = 255
+if NewTransparency >= 255
+	return
+NewTransparency := Transparency + 1
+WinSet, Transparent, %NewTransparency%, A
+return
+
 
 ^!F11::
 WinMax:
